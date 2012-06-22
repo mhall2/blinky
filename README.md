@@ -1,0 +1,1 @@
+Blinky will be a gis demo running on node with some cool stuff (maybe).
