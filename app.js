@@ -1,7 +1,15 @@
 var app = require('express').createServer();
+var io = require('socket.io').listen(app);
+app.listen(3000);
 
 app.get('/', function(req, res){
-  res.send('sup from blinky');
+  res.sendfile(__dirname + '/index.html');
 });
 
-app.listen(3000);
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'blinky' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
